@@ -1,5 +1,32 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
+  padding: 0;
+  margin: 0;
   background: #FAFACB;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 60px;
+  background: #333;
+}
+
+.navbar .logo i {
+  color: #fff;
+  font-size: 48px;
+}
+
+.navbar .links a {
+  text-decoration: none;
+  color: #fff;
+  padding-right: 20px;
 }
 
 h1 {
