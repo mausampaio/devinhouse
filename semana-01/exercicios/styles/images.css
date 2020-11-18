@@ -1,0 +1,14 @@
+.images {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+}
+
+.images .image {
+  width: 450px;
+}
+
+.images .image img {
+  width: 100%;
+  height: 100%;
+}
