@@ -7,6 +7,17 @@ h1 {
   font-size: 20px;
   text-align: center;
   color: #752E2E;
+  padding-bottom: 10px;
+  padding-top: 10px;
+
+  background: linear-gradient(to right, rgba(92, 77, 66, 0.5) 0%, rgba(92, 77, 66, 0.5) 100%), url(images/code-02);
+  background-repeat: no-repeat;
+
+  /* background-image: linear-gradient(to right, #752E2E, #752E2E);
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: 30% 4px;
+  transition: background-size .5s ease; */
 }
 
 p {
