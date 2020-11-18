@@ -12,3 +12,9 @@ h1 {
 p {
   font-size: 14px;
 }
+
+button {
+  padding: 10px;
+  border: solid 2px #111;
+  margin-top: 20px;
+}
