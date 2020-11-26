@@ -7,7 +7,7 @@ const getCurrentHour = () => {
 
   const result = document.querySelector("#hour");
 
-  result.innerHTML = `Agora são: ${date.getHours()}:${date.getMinutes()}`;
+  result.innerHTML = `Agora são: ${hour}:${minutes}`;
 
   setTimeout(getCurrentHour, 500);
 };
