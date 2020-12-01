@@ -61,3 +61,93 @@ nav .nav-links {
 nav .nav-active {
   transform: translateX(0%);
 }
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.card-content {
+  width: 100%;
+  margin: 2rem 0;
+  padding: 2rem;
+  background: #FFF;
+  border-radius: .5rem;
+  justify-self: center;
+  box-shadow: 0px 10px 20px -15px rgba(0,0,0,0.22);
+}
+
+.card-content h1 {
+  color: #444;
+}
+
+.task-container {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  padding-bottom: .5rem;
+  border-bottom-style: solid;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+  border-bottom-width: 1px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.check-box {
+  margin-right: 11px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #dcdcdc;
+  border-radius: 50%;
+  cursor: pointer;
+
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkbox-container input:hover ~ .check-box {
+  background: rgba(0,0,0,0.1);
+}
+.checkbox-container input:hover ~ .check-box svg {
+  opacity: 1;
+}
+.checkbox-container input:hover ~ .check-box svg path{
+  fill: #999;
+}
+.checkbox-container input:checked ~ .check-box {
+  background: #999;
+}
+.checkbox-container input:checked ~ .check-box svg {
+  opacity: 1;
+}
+.checkbox-container input:checked ~ .check-box svg path{
+  fill: #fff;
+}
+
+.check-box svg {
+  width: 18px;
+  height: 18px;
+  margin-left: -6px;
+  margin-top: -6px;
+  opacity: 0;
+  transition: opacity .15s cubic-bezier(.4,0,1,1);
+}
+
+.task-title {
+  cursor: pointer;
+}
