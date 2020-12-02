@@ -12,6 +12,16 @@ const navSlide = () => {
   });
 };
 
+const handleTaskTitleClick = () => {
+  const taskTitles = document.querySelectorAll('.task-title');
+
+  taskTitles.forEach((taskTitle) => {
+    taskTitle.addEventListener('click', () => {
+      openEditModal(taskTitle); 
+    });
+  });
+};
+
 const handleCheckboxClick = () => {
   const labels = document.querySelectorAll('.checkbox-container');
 
@@ -56,12 +66,42 @@ const addModalClick = () => {
   modalContent.addEventListener('click', modalClick);
 };
 
-const openModal = () => {
+const openModal = (title, placeholder, buttonTitle, func) => {
+  const modalTitle = document.querySelector('.modal-title');
+  const modalInput = document.querySelector('.modal-form input');
+  const modalForm = document.querySelector('.modal-form');
+  const modalButton = document.querySelector('.modal-form button');
+
+  modalTitle.textContent = title;
+  modalInput.placeholder = placeholder;
+
+  if (!modalButton) {
+    const newModalButton = document.createElement('button');
+    newModalButton.innerHTML = buttonTitle;
+    newModalButton.addEventListener('click', func);
+    modalForm.appendChild(newModalButton);
+  }
+
   modal.classList.add('visible');
 };
 
+const openAddModal = () => {
+  openModal('Nova Tarefa', 'Nome da tarefa', 'Adicionar', addTask);
+};
+
+const openEditModal = (taskTitle) => {
+  openModal('Editar Tarefa', 'Nome da tarefa', 'Editar', () => {editTask(taskTitle)});
+};
+
 const closeModal = () => {
+  const modalForm = document.querySelector('.modal-form');
+  const modalButton = document.querySelectorAll('.modal-form button');
+
   modal.classList.remove('visible');
+
+  modalButton.forEach(button => {
+    modalForm.removeChild(button);
+  });
 };
 
 function modalClick(e) {
@@ -80,6 +120,7 @@ const getTaskList = () => {
     });
 
     handleCheckboxClick();
+    handleTaskTitleClick();
   }
 };
 
@@ -111,10 +152,45 @@ const addTask = () => {
     setTaskList(taskInput);
 
     closeModal();
+
     taskInput.value = "";
+
     handleCheckboxClick();
+    handleTaskTitleClick();
   } else {
-    alert('Digite uma tarefa!')
+    alert('Digite uma tarefa!');
+  }
+};
+
+const editTask = (taskTitle) => {
+  const taskInput = document.querySelector('#taskInput');
+  const taskTitleText = document.querySelectorAll('.task-title');
+
+  if (taskInput.value) {
+    tasklist = tasklist.map(task => {
+      if (task.title === taskTitle.textContent) {
+        task = {
+          ...task,
+          title: taskInput.value,
+        };
+      }
+  
+      return task;
+    });
+  
+    taskTitleText.forEach(task => {
+      if (task.textContent === taskTitle.textContent) {
+        task.innerHTML = taskInput.value;
+      }
+    });
+  
+    localStorage.setItem('tasklist', JSON.stringify(tasklist));
+  
+    closeModal();
+  
+    taskInput.value = "";
+  } else {
+    alert('Digite uma tarefa!');
   }
 };
 
@@ -129,7 +205,6 @@ const setTaskList = (taskInput) => {
 
 const app = () => {
   navSlide();
-  handleCheckboxClick();
   addModalClick();
   getTaskList();
 };
