@@ -48,7 +48,7 @@
               Tarefa 1
             </div>
           </div>
-          
+
           <div class="task-container">
             <label class="checkbox-container">
               <input type="checkbox">
@@ -63,10 +63,30 @@
             </div>
           </div>
         </div>
+
+        <div class="new-task" onclick="openModal()">
+          <span class="add-button">
+            <i class="material-icons md-18">add</i>
+          </span>
+          Adicionar tarefa
+        </div>
+
       </div>
     </div>
   </section>
-
+  
+  <div id="addTaskModal" class="modal" onclick="closeModal()">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div class="modal-title">
+        Nova tarefa
+      </div>
+      <div class="modal-form">
+        <input id="taskInput" type="text" placeholder="Adicionar uma tarefa">
+        <button onclick="addTask()">Adicionar</button>
+      </div>
+    </div>
+  </div>
 
   <script src="scripts/script.js"></script>
 </body>

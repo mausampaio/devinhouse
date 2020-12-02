@@ -151,3 +151,129 @@ nav .nav-active {
 .task-title {
   cursor: pointer;
 }
+
+.new-task {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.new-task:hover {
+  color: #de4c4a;
+  font-weight: bold;
+}
+
+.add-button {
+  width: 18px;
+  height: 18px;
+  border: none;
+  border-radius: 50%;
+  margin-right: 11px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-task:hover .add-button {
+  border: 1px solid #de4c4a;
+  background-color: #de4c4a;
+}
+
+.add-button i {
+  color: #de4c4a;
+  font-size: 20px;
+}
+
+.new-task:hover i {
+  color: #fff;
+}
+
+.modal {
+  /* display: none; */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+  background-color: rgba(0,0,0,0.4);
+  transition: opacity 0.15s ease-out, width 0s linear 0.15s, height 0s linear 0.15s;
+}
+
+#addTaskModal.visible {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: opacity 0.15s ease-out;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 2rem;
+  width: 30%;
+  border-radius: .5rem;
+}
+
+.close {
+  color: #aaa;
+  top: 0;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-content .modal-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  margin: .5rem 0;
+}
+
+.modal-content .modal-form {
+  margin-top: 1rem;
+}
+
+.modal-content .modal-form input {
+  padding: .3rem .5rem;
+  height: 2rem;
+  border: 1px solid #E6E6F0;
+  border-radius: .5rem;
+  background-color: #FAFAFC;
+}
+
+.modal-content .modal-form button {
+  margin-left: .5rem;
+  display: inline-block;
+  padding: .3rem .5rem;
+  height: 2rem;
+  border-radius: .5rem;
+  border: 1px solid #E6E6F0;
+  cursor: pointer;
+}
+
+.modal-content .modal-form button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  nav {
+    min-height: 8vh;
+  }
+  nav .nav-container {
+    padding: 0 1rem;
+  }
+  .card-container {
+    max-width: 90vw;
+  }
+}
