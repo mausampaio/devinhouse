@@ -20,13 +20,36 @@ const handleCheckboxClick = () => {
     const taskContainer = label.parentElement;
     const taskTitle = taskContainer.querySelector('.task-title');
 
+    handleInputCheck(taskTitle, input);
+
     label.addEventListener('click', () => {
-      input.checked
-        ? taskTitle.setAttribute('style', 'text-decoration: line-through;')
-        : taskTitle.setAttribute('style', 'text-decoration: none;')
-      ;
+      handleInputCheck(taskTitle, input);
+
+      setTaskChecked(taskTitle, input);
     });
   });
+};
+
+const handleInputCheck = (taskTitle, input) => {
+  input.checked
+    ? taskTitle.setAttribute('style', 'text-decoration: line-through;')
+    : taskTitle.setAttribute('style', 'text-decoration: none;')
+  ;
+};
+
+const setTaskChecked = (taskTitle, input) => {
+  tasklist = tasklist.map(task => {
+    if (task.title === taskTitle.textContent) {
+      task = {
+        ...task,
+        checked: input.checked ? true : false,
+      };
+    }
+
+    return task;
+  });
+
+  localStorage.setItem('tasklist', JSON.stringify(tasklist));
 };
 
 const addModalClick = () => {
@@ -53,17 +76,19 @@ const getTaskList = () => {
     tasklist = JSON.parse(localStorage.getItem('tasklist'));
   
     tasklist.forEach(item => {
-      createTaskElement(item);
+      createTaskElement(item.title, item.checked);
     });
+
+    handleCheckboxClick();
   }
 };
 
-const createTaskElement = (taskInput) => {
+const createTaskElement = (taskValue, checked) => {
   const task = document.createElement('div');
   const taskTitle = document.createElement('div');
   task.classList.add('task-container');
   task.innerHTML = `<label class="checkbox-container">
-    <input type="checkbox">
+    <input type="checkbox" ${checked && 'checked'}>
     <span class="check-box">
       <svg width="24" height="24">
         <path fill="#999" d="M11.23 13.7l-2.15-2a.55.55 0 0 0-.74-.01l.03-.03a.46.46 0 0 0 0 .68L11.24 15l5.4-5.01a.45.45 0 0 0 0-.68l.02.03a.55.55 0 0 0-.73 0l-4.7 4.35z"></path>
@@ -71,7 +96,7 @@ const createTaskElement = (taskInput) => {
     </span>
   </label>`;
   taskTitle.classList.add('task-title');
-  taskTitle.innerHTML = taskInput;
+  taskTitle.innerHTML = taskValue;
   task.appendChild(taskTitle);
 
   cardContent.appendChild(task);
@@ -81,9 +106,9 @@ const addTask = () => {
   const taskInput = document.querySelector('#taskInput');
 
   if (taskInput.value) {
-    createTaskElement(taskInput.value);
+    createTaskElement(taskInput.value, false);
     
-    setTaskList(taskInput.value);
+    setTaskList(taskInput);
 
     closeModal();
     taskInput.value = "";
@@ -93,8 +118,12 @@ const addTask = () => {
   }
 };
 
-const setTaskList = (taskTitle) => {
-  tasklist.push(taskTitle);
+const setTaskList = (taskInput) => {
+  const task = {
+    title: taskInput.value,
+    checked: false,
+  };
+  tasklist.push(task);
   localStorage.setItem('tasklist', JSON.stringify(tasklist));
 };
 
