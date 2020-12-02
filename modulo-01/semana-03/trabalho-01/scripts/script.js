@@ -1,5 +1,7 @@
 const modal = document.querySelector('#addTaskModal');
 const modalContent = document.querySelector('.modal-content');
+const cardContent = document.querySelector('.card-content .checklist');
+let tasklist = [];
 
 const navSlide = () => {
   const burger = document.querySelector('.burger');
@@ -46,6 +48,16 @@ function modalClick(e) {
   return false;
 };
 
+const getTaskList = () => {
+  if (JSON.parse(localStorage.getItem('tasklist'))) {
+    tasklist = JSON.parse(localStorage.getItem('tasklist'));
+  
+    tasklist.forEach(item => {
+      createTaskElement(item);
+    });
+  }
+};
+
 const createTaskElement = (taskInput) => {
   const task = document.createElement('div');
   const taskTitle = document.createElement('div');
@@ -62,26 +74,35 @@ const createTaskElement = (taskInput) => {
   taskTitle.innerHTML = taskInput;
   task.appendChild(taskTitle);
 
-  return task;
+  cardContent.appendChild(task);
 };
 
 const addTask = () => {
   const taskInput = document.querySelector('#taskInput');
-  const cardContent = document.querySelector('.card-content .checklist');
 
-  const task = createTaskElement(taskInput.value);
+  if (taskInput.value) {
+    createTaskElement(taskInput.value);
+    
+    setTaskList(taskInput.value);
 
-  cardContent.appendChild(task);
+    closeModal();
+    taskInput.value = "";
+    handleCheckboxClick();
+  } else {
+    alert('Digite uma tarefa!')
+  }
+};
 
-  closeModal();
-  taskInput.value = "";
-  handleCheckboxClick();
+const setTaskList = (taskTitle) => {
+  tasklist.push(taskTitle);
+  localStorage.setItem('tasklist', JSON.stringify(tasklist));
 };
 
 const app = () => {
   navSlide();
   handleCheckboxClick();
   addModalClick();
+  getTaskList();
 };
 
 app();
