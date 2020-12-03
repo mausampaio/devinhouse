@@ -1,5 +1,4 @@
 const modal = document.querySelector('#addTaskModal');
-const modalContent = document.querySelector('.modal-content');
 const cardContent = document.querySelector('.card-content .checklist');
 let tasklist = [];
 
@@ -9,16 +8,6 @@ const navSlide = () => {
 
   burger.addEventListener('click', () => {
     nav.classList.toggle('nav-active');
-  });
-};
-
-const handleTaskTitleClick = () => {
-  const taskTitles = document.querySelectorAll('.task-title');
-
-  taskTitles.forEach((taskTitle) => {
-    taskTitle.addEventListener('click', () => {
-      openEditModal(taskTitle); 
-    });
   });
 };
 
@@ -62,7 +51,29 @@ const setTaskChecked = (taskTitle, input) => {
   localStorage.setItem('tasklist', JSON.stringify(tasklist));
 };
 
+const handleTaskTitleClick = () => {
+  const taskTitles = document.querySelectorAll('.task-title');
+
+  taskTitles.forEach((taskTitle) => {
+    taskTitle.addEventListener('click', () => {
+      openEditModal(taskTitle); 
+    });
+  });
+};
+
+const handleTaskDeleteClick = () => {
+  const taskContainers = document.querySelectorAll('.task-container');
+
+  taskContainers.forEach(container => {
+    const deleteButton = container.querySelector('i');
+    const taskTitle = container.querySelector('.task-title');
+
+    deleteButton.addEventListener('click', () => {deleteTask(container, taskTitle)});
+  });
+};
+
 const addModalClick = () => {
+  const modalContent = document.querySelector('.modal-content');
   modalContent.addEventListener('click', modalClick);
 };
 
@@ -75,6 +86,7 @@ const openModal = (title, placeholder, buttonTitle, func) => {
   modalTitle.textContent = title;
   modalInput.placeholder = placeholder;
 
+  // Criação de um novo botão a cada abertura para limpar os event listeners.
   if (!modalButton) {
     const newModalButton = document.createElement('button');
     newModalButton.innerHTML = buttonTitle;
@@ -104,7 +116,8 @@ const closeModal = () => {
   });
 };
 
-function modalClick(e) {
+// Função para impedir que ao clicar no modal o mesmo seja fechado.
+const modalClick = (e) => {
   e.preventDefault();
   e.stopPropagation();
   e.stopImmediatePropagation();
@@ -117,10 +130,12 @@ const getTaskList = () => {
   
     tasklist.forEach(item => {
       createTaskElement(item.title, item.checked);
+      createDeleteButton();
     });
 
     handleCheckboxClick();
     handleTaskTitleClick();
+    handleTaskDeleteClick();
   }
 };
 
@@ -143,11 +158,25 @@ const createTaskElement = (taskValue, checked) => {
   cardContent.appendChild(task);
 };
 
+const createDeleteButton = () => {
+  const checkboxContainers = document.querySelectorAll('.task-container');
+  const deleteButton = document.createElement('i');
+
+  deleteButton.classList.add('material-icons');
+  deleteButton.innerHTML = 'delete_outline';
+
+  checkboxContainers.forEach(container => {
+    container.appendChild(deleteButton);
+  });
+};
+
 const addTask = () => {
   const taskInput = document.querySelector('#taskInput');
 
   if (taskInput.value) {
     createTaskElement(taskInput.value, false);
+
+    createDeleteButton();
     
     setTaskList(taskInput);
 
@@ -157,6 +186,7 @@ const addTask = () => {
 
     handleCheckboxClick();
     handleTaskTitleClick();
+    handleTaskDeleteClick();
   } else {
     alert('Digite uma tarefa!');
   }
@@ -191,6 +221,24 @@ const editTask = (taskTitle) => {
     taskInput.value = "";
   } else {
     alert('Digite uma tarefa!');
+  }
+};
+
+const deleteTask = (container, taskTitle) => {
+  const parentContainer = container.parentElement;
+
+  if (JSON.parse(localStorage.getItem('tasklist'))) {
+    tasklist = JSON.parse(localStorage.getItem('tasklist'));
+    
+    tasklist.forEach((item, index) => {
+      if (item.title === taskTitle.textContent) {
+        console.log('oi')
+        tasklist.splice(index, 1);
+      }
+    });
+
+    localStorage.setItem('tasklist', JSON.stringify(tasklist));
+    parentContainer.removeChild(container);
   }
 };
 

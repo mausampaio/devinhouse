@@ -84,6 +84,7 @@ nav .nav-active {
 }
 
 .task-container {
+  position: relative;
   margin-top: 1rem;
   display: flex;
   align-items: center;
@@ -149,6 +150,17 @@ nav .nav-active {
 }
 
 .task-title {
+  cursor: pointer;
+}
+
+.task-container i {
+  position: absolute;
+  right: 0;
+  padding-right: 1rem;
+}
+
+.task-container i:hover {
+  color: #de4c4a;
   cursor: pointer;
 }
 
