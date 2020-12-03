@@ -264,6 +264,10 @@ nav .nav-active {
   background-color: #FAFAFC;
 }
 
+.modal-content .modal-form .input-validation:focus {
+  outline: 1px auto #de4c4a;
+}
+
 .modal-content .modal-form button {
   margin-left: .5rem;
   display: inline-block;
@@ -276,6 +280,24 @@ nav .nav-active {
 
 .modal-content .modal-form button:hover {
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+.modal-content .validation {
+  margin-top: 2rem;
+  font-size: 14px;
+  color: #de4c4a;
+  opacity: 0;
+  overflow: hidden;
+  width: 0px;
+  height: 0px;
+  transition: opacity 0.15s ease-out, width 0s linear 0.15s, height 0s linear 0.15s;
+}
+
+.modal-content .visible {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: opacity 0.15s ease-out;
 }
 
 @media (max-width: 768px) {

@@ -170,10 +170,31 @@ const createDeleteButton = () => {
   });
 };
 
+const validation = () => {
+  const validation = document.querySelector('.validation');
+  const input = document.querySelector('.modal-form input');
+
+  validation.classList.add('visible');
+  input.classList.add('input-validation');
+  input.focus();
+};
+
+const removeValidation = () => {
+  const validation = document.querySelector('.validation');
+  const input = document.querySelector('.modal-form input');
+
+  validation.classList.remove('visible');
+  input.classList.remove('input-validation');
+};
+
 const addTask = () => {
   const taskInput = document.querySelector('#taskInput');
 
-  if (taskInput.value) {
+  if (taskInput.value === "") {
+    validation();
+  } else {
+    removeValidation();
+
     createTaskElement(taskInput.value, false);
 
     createDeleteButton();
@@ -187,8 +208,6 @@ const addTask = () => {
     handleCheckboxClick();
     handleTaskTitleClick();
     handleTaskDeleteClick();
-  } else {
-    alert('Digite uma tarefa!');
   }
 };
 
@@ -196,7 +215,11 @@ const editTask = (taskTitle) => {
   const taskInput = document.querySelector('#taskInput');
   const taskTitleText = document.querySelectorAll('.task-title');
 
-  if (taskInput.value) {
+  if (taskInput.value === "") {
+    validation();
+  } else {
+    removeValidation();
+
     tasklist = tasklist.map(task => {
       if (task.title === taskTitle.textContent) {
         task = {
@@ -219,8 +242,6 @@ const editTask = (taskTitle) => {
     closeModal();
   
     taskInput.value = "";
-  } else {
-    alert('Digite uma tarefa!');
   }
 };
 
