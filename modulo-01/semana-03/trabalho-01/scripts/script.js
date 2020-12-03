@@ -130,26 +130,33 @@ const cleanChecklist = () => {
   checklist.innerHTML = "";
 };
 
-const getTaskList = (filter) => {
+const getTaskList = (search, filter) => {
   if (JSON.parse(localStorage.getItem('tasklist'))) {
     cleanChecklist();
 
     tasklist = JSON.parse(localStorage.getItem('tasklist'));
   
     tasklist.forEach(item => {
-      if (filter === 'checked') {
-        if (item.checked) {
-          createTaskElement(item.title, item.checked);
-          createDeleteButton();
-        }
-      } else if (filter === 'unchecked') {
-        if (!item.checked) {
+      if (search) {
+        if (item.title.toLowerCase().includes(search.toLowerCase())) {
           createTaskElement(item.title, item.checked);
           createDeleteButton();
         }
       } else {
-        createTaskElement(item.title, item.checked);
-        createDeleteButton();
+        if (filter === 'checked') {
+          if (item.checked) {
+            createTaskElement(item.title, item.checked);
+            createDeleteButton();
+          }
+        } else if (filter === 'unchecked') {
+          if (!item.checked) {
+            createTaskElement(item.title, item.checked);
+            createDeleteButton();
+          }
+        } else {
+          createTaskElement(item.title, item.checked);
+          createDeleteButton();
+        }
       }
     });
 
@@ -160,11 +167,19 @@ const getTaskList = (filter) => {
 };
 
 const getCheckedTaskList = () => {
-  getTaskList('checked');
+  getTaskList(false, 'checked');
 };
 
 const getUncheckedTaskList = () => {
-  getTaskList('unchecked');
+  getTaskList(false, 'unchecked');
+};
+
+const getSearchedTaskList = (e) => {
+  e.preventDefault();
+
+  const searchInput = document.querySelector('.search input');
+
+  getTaskList(searchInput.value);
 };
 
 const createTaskElement = (taskValue, checked) => {

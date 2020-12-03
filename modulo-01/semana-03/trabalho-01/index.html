@@ -6,6 +6,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
   <link rel="stylesheet" href="styles/style.css">
   <title>Twigo</title>
 </head>
@@ -17,6 +18,10 @@
         <div class="line2"></div>
         <div class="line3"></div>
       </div>
+      <form class="search">
+        <input type="text" placeholder="&#xF002 Busca" class="fa">
+        <button onclick="getSearchedTaskList(event)">Buscar</button>
+      </form>
       <div class="logo">
         <h4>Twigo</h4>
       </div>
