@@ -124,19 +124,47 @@ const modalClick = (e) => {
   return false;
 };
 
-const getTaskList = () => {
+const cleanChecklist = () => {
+  const checklist = document.querySelector('.checklist');
+
+  checklist.innerHTML = "";
+};
+
+const getTaskList = (filter) => {
   if (JSON.parse(localStorage.getItem('tasklist'))) {
+    cleanChecklist();
+
     tasklist = JSON.parse(localStorage.getItem('tasklist'));
   
     tasklist.forEach(item => {
-      createTaskElement(item.title, item.checked);
-      createDeleteButton();
+      if (filter === 'checked') {
+        if (item.checked) {
+          createTaskElement(item.title, item.checked);
+          createDeleteButton();
+        }
+      } else if (filter === 'unchecked') {
+        if (!item.checked) {
+          createTaskElement(item.title, item.checked);
+          createDeleteButton();
+        }
+      } else {
+        createTaskElement(item.title, item.checked);
+        createDeleteButton();
+      }
     });
 
     handleCheckboxClick();
     handleTaskTitleClick();
     handleTaskDeleteClick();
   }
+};
+
+const getCheckedTaskList = () => {
+  getTaskList('checked');
+};
+
+const getUncheckedTaskList = () => {
+  getTaskList('unchecked');
 };
 
 const createTaskElement = (taskValue, checked) => {
