@@ -8,6 +8,8 @@ body {
   background: #F0F0F7;
   color: #444;
   font-family: 'Roboto', sans-serif;
+  width: 100%;
+  height: 100vh;
 }
 
 input {
@@ -22,7 +24,11 @@ input {
   margin-left: .5rem;
   display: inline-block;
   padding: .3rem .5rem;
+  width: 6rem;
   height: 2rem;
+  color: #333;
+  font-size: 14px;
+  background-color: rgb(239, 239, 239);
   border-radius: .5rem;
   border: 1px solid #E6E6F0;
   cursor: pointer;
@@ -33,6 +39,7 @@ button:hover {
 }
 
 nav {
+  z-index: 1;
   position: sticky;
   top: 0;
   display: flex;
@@ -43,7 +50,7 @@ nav {
 }
 
 nav .nav-container {
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   padding: 0 8rem;
   display: flex;
@@ -59,7 +66,7 @@ nav .burger {
 nav .burger div {
   width: 25px;
   height: 3px;
-  background: rgb(226, 226, 226);
+  background: #E2E2E2;
   margin: 5px;
 }
 
@@ -68,18 +75,26 @@ nav .search {
   align-items: center;
 }
 
+nav .nav-search {
+  display: none;
+}
+
 nav .logo {
+  display: flex;
+  align-items: center;
   margin: 5px;
-  color: rgb(226, 226, 226);
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  font-size: 20px;
+  color: #E2E2E2;
+  text-transform: lowercase;
+  font-size: 24px;
+}
+
+nav .logo img {
+  height: 30px;
 }
 
 nav .nav-links {
   display: flex;
   flex-direction: column;
-  padding-left: 2rem;
   position: absolute;
   left: 0px;
   height: 92vh;
@@ -91,19 +106,20 @@ nav .nav-links {
 }
 
 nav .nav-links li {
+  padding-left: 2rem;
   margin-top: 2rem;
   list-style: none;
 }
 
 nav .nav-links a {
-  color: rgb(226, 226, 226);
+  color: #E2E2E2;
   text-decoration: none;
   margin-bottom: .5rem;
   cursor: pointer;
 }
 
 nav .nav-links a:hover {
-  border: 0 solid rgb(226, 226, 226);
+  border: 0 solid #E2E2E2;
   border-bottom-width: 2px;
 }
 
@@ -266,7 +282,7 @@ nav .nav-active {
 
 #addTaskModal.visible {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   opacity: 1;
   transition: opacity 0.15s ease-out;
 }
@@ -280,22 +296,27 @@ nav .nav-active {
   border-radius: .5rem;
 }
 
-.close {
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-header .close {
+  padding-bottom: .2rem;
   color: #aaa;
-  top: 0;
-  float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.modal-header .close:hover,
+.modal-header .close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
 }
 
-.modal-content .modal-title {
+.modal-header .modal-title {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
   margin: .5rem 0;
@@ -338,7 +359,50 @@ nav .nav-active {
   nav .nav-container {
     padding: 0 1rem;
   }
+  nav .nav-links {
+    height: 93vh;
+    top: 7vh;
+    width: 50%;
+  }
+  nav .search {
+    display: none;
+  }
+  nav .nav-search {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  nav .nav-search input {
+    margin-top: 2rem;
+    width: 10rem;
+  }
+  nav .nav-search button {
+    margin: 0;
+    margin-top: .5rem;
+    width: 10rem;
+  }
   .card-container {
     max-width: 90vw;
+  }
+  .modal-content {
+    width: 80%;
+  }
+  .modal-form {
+    display: flex;
+    flex-direction: column;
+  }
+  .modal-form input {
+    display: block;
+    width: 100%;
+    height: 2.5rem;
+    font-size: 14px;
+  }
+  .modal-form button {
+    margin: 0;
+    margin-top: 1rem;
+    display: block;
+    height: 2.5rem;
+    align-self: flex-end;
   }
 }
