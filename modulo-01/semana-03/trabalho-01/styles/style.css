@@ -68,6 +68,19 @@ nav .burger div {
   height: 3px;
   background: #E2E2E2;
   margin: 5px;
+  transition: all 0.3s ease;
+}
+
+nav .toggle .line1 {
+  transform: rotate(-45deg) translate(-5px,6px);
+}
+
+nav .toggle .line2 {
+  opacity: 0;
+}
+
+nav .toggle .line3 {
+  transform: rotate(45deg) translate(-5px,-6px);
 }
 
 nav .search {

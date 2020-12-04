@@ -8,6 +8,9 @@ const navSlide = () => {
 
   burger.addEventListener('click', () => {
     nav.classList.toggle('nav-active');
+
+    // Animação do burger menu
+    burger.classList.toggle('toggle');
   });
 };
 
