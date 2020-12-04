@@ -1,0 +1,4 @@
+[build]
+base    = "modulo-01/semana-03/trabalho-01"
+publish = "/"
+command = ""
