@@ -311,17 +311,21 @@ const editTask = (taskContainer) => {
 const deleteTask = (taskContainer) => {
   const parentContainer = taskContainer.parentElement;
 
-  if (JSON.parse(localStorage.getItem('tasklist'))) {
-    tasklist = JSON.parse(localStorage.getItem('tasklist'));
-    
-    tasklist.forEach((item, index) => {
-      if (item.id === parseInt(taskContainer.id)) {
-        tasklist.splice(index, 1);
-      }
-    });
-
-    localStorage.setItem('tasklist', JSON.stringify(tasklist));
-    parentContainer.removeChild(taskContainer);
+  if (confirm('Deseja realmente excluir essa tarefa?')) {
+    if (JSON.parse(localStorage.getItem('tasklist'))) {
+      tasklist = JSON.parse(localStorage.getItem('tasklist'));
+      
+      tasklist.forEach((item, index) => {
+        if (item.id === parseInt(taskContainer.id)) {
+          tasklist.splice(index, 1);
+        }
+      });
+  
+      localStorage.setItem('tasklist', JSON.stringify(tasklist));
+      parentContainer.removeChild(taskContainer);
+    }
+  } else {
+    return false;
   }
 };
 
