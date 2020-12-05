@@ -55,11 +55,13 @@ const setTaskChecked = (taskTitle, input) => {
 };
 
 const handleTaskTitleClick = () => {
-  const taskTitles = document.querySelectorAll('.task-title');
+  const taskContainers = document.querySelectorAll('.task-container'); 
 
-  taskTitles.forEach((taskTitle) => {
+  taskContainers.forEach((taskContainer) => {
+    const taskTitle = taskContainer.querySelector('.task-title');
+
     taskTitle.addEventListener('click', () => {
-      openEditModal(taskTitle); 
+      openEditModal(taskContainer);
     });
   });
 };
@@ -67,11 +69,10 @@ const handleTaskTitleClick = () => {
 const handleTaskDeleteClick = () => {
   const taskContainers = document.querySelectorAll('.task-container');
 
-  taskContainers.forEach(container => {
-    const deleteButton = container.querySelector('i');
-    const taskTitle = container.querySelector('.task-title');
+  taskContainers.forEach(taskContainer => {
+    const deleteButton = taskContainer.querySelector('i');
 
-    deleteButton.addEventListener('click', () => {deleteTask(container, taskTitle)});
+    deleteButton.addEventListener('click', () => {deleteTask(taskContainer)});
   });
 };
 
@@ -104,11 +105,12 @@ const openAddModal = () => {
   openModal('Nova Tarefa', 'Nome da tarefa', 'Adicionar', addTask);
 };
 
-const openEditModal = (taskTitle) => {
-  openModal('Editar Tarefa', 'Nome da tarefa', 'Editar', () => {editTask(taskTitle)});
+const openEditModal = (taskContainer) => {
+  openModal('Editar Tarefa', 'Nome da tarefa', 'Editar', () => {editTask(taskContainer)});
 };
 
 const closeModal = () => {
+  removeValidation();
   const modalForm = document.querySelector('.modal-form');
   const modalButton = document.querySelectorAll('.modal-form button');
 
@@ -133,6 +135,22 @@ const cleanChecklist = () => {
   checklist.innerHTML = "";
 };
 
+const getId = () => {
+  let lastId = 0;
+
+  if (JSON.parse(localStorage.getItem('tasklist'))) {
+    tasklist = JSON.parse(localStorage.getItem('tasklist'));
+
+    tasklist.forEach(item => {
+      if (lastId < item.id) {
+        lastId = item.id;
+      }
+    });
+  }
+
+  return lastId + 1;
+};
+
 const getTaskList = (search, filter) => {
   if (JSON.parse(localStorage.getItem('tasklist'))) {
     cleanChecklist();
@@ -142,22 +160,22 @@ const getTaskList = (search, filter) => {
     tasklist.forEach(item => {
       if (search) {
         if (item.title.toLowerCase().includes(search.toLowerCase())) {
-          createTaskElement(item.title, item.checked);
+          createTaskElement(item.title, item.checked, item.id);
           createDeleteButton();
         }
       } else {
         if (filter === 'checked') {
           if (item.checked) {
-            createTaskElement(item.title, item.checked);
+            createTaskElement(item.title, item.checked, item.id);
             createDeleteButton();
           }
         } else if (filter === 'unchecked') {
           if (!item.checked) {
-            createTaskElement(item.title, item.checked);
+            createTaskElement(item.title, item.checked, item.id);
             createDeleteButton();
           }
         } else {
-          createTaskElement(item.title, item.checked);
+          createTaskElement(item.title, item.checked, item.id);
           createDeleteButton();
         }
       }
@@ -185,9 +203,10 @@ const getSearchedTaskList = (e) => {
   getTaskList(searchInput.value);
 };
 
-const createTaskElement = (taskValue, checked) => {
+const createTaskElement = (taskValue, checked, id) => {
   const task = document.createElement('div');
   const taskTitle = document.createElement('div');
+  task.id = id;
   task.classList.add('task-container');
   task.innerHTML = `<label class="checkbox-container">
     <input type="checkbox" ${checked && 'checked'}>
@@ -234,6 +253,8 @@ const removeValidation = () => {
 };
 
 const addTask = () => {
+  const id = getId();
+
   const taskInput = document.querySelector('#taskInput');
 
   if (taskInput.value === "") {
@@ -241,11 +262,11 @@ const addTask = () => {
   } else {
     removeValidation();
 
-    createTaskElement(taskInput.value, false);
+    createTaskElement(taskInput.value, false, id);
 
     createDeleteButton();
     
-    setTaskList(taskInput);
+    setTaskList(taskInput, id);
 
     closeModal();
 
@@ -257,9 +278,9 @@ const addTask = () => {
   }
 };
 
-const editTask = (taskTitle) => {
+const editTask = (taskContainer) => {
   const taskInput = document.querySelector('#taskInput');
-  const taskTitleText = document.querySelectorAll('.task-title');
+  const taskTitle = taskContainer.querySelector('.task-title');
 
   if (taskInput.value === "") {
     validation();
@@ -267,7 +288,7 @@ const editTask = (taskTitle) => {
     removeValidation();
 
     tasklist = tasklist.map(task => {
-      if (task.title === taskTitle.textContent) {
+      if (task.id === parseInt(taskContainer.id)) {
         task = {
           ...task,
           title: taskInput.value,
@@ -276,12 +297,8 @@ const editTask = (taskTitle) => {
   
       return task;
     });
-  
-    taskTitleText.forEach(task => {
-      if (task.textContent === taskTitle.textContent) {
-        task.innerHTML = taskInput.value;
-      }
-    });
+
+    taskTitle.innerHTML = taskInput.value;
   
     localStorage.setItem('tasklist', JSON.stringify(tasklist));
   
@@ -291,26 +308,26 @@ const editTask = (taskTitle) => {
   }
 };
 
-const deleteTask = (container, taskTitle) => {
-  const parentContainer = container.parentElement;
+const deleteTask = (taskContainer) => {
+  const parentContainer = taskContainer.parentElement;
 
   if (JSON.parse(localStorage.getItem('tasklist'))) {
     tasklist = JSON.parse(localStorage.getItem('tasklist'));
     
     tasklist.forEach((item, index) => {
-      if (item.title === taskTitle.textContent) {
-        console.log('oi')
+      if (item.id === parseInt(taskContainer.id)) {
         tasklist.splice(index, 1);
       }
     });
 
     localStorage.setItem('tasklist', JSON.stringify(tasklist));
-    parentContainer.removeChild(container);
+    parentContainer.removeChild(taskContainer);
   }
 };
 
-const setTaskList = (taskInput) => {
+const setTaskList = (taskInput, id) => {
   const task = {
+    id,
     title: taskInput.value,
     checked: false,
   };
