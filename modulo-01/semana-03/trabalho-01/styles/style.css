@@ -189,7 +189,7 @@ nav .nav-active {
   margin-right: 11px;
   width: 18px;
   height: 18px;
-  border: 1px solid #dcdcdc;
+  border: 1px solid #c2c2c2;
   border-radius: 50%;
   cursor: pointer;
 
@@ -232,14 +232,15 @@ nav .nav-active {
 }
 
 .task-container i {
+  color: #c2c2c2;
   position: absolute;
   right: 0;
-  padding-right: 1rem;
+  /* padding-right: 1rem; */
+  cursor: pointer;
 }
 
 .task-container i:hover {
   color: #de4c4a;
-  cursor: pointer;
 }
 
 .new-task {
