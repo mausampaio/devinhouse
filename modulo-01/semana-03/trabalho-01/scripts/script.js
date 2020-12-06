@@ -152,6 +152,8 @@ const getId = () => {
 };
 
 const getTaskList = (search, filter) => {
+  const searchInput = document.querySelector('.search input');
+
   if (JSON.parse(localStorage.getItem('tasklist'))) {
     cleanChecklist();
 
@@ -162,6 +164,7 @@ const getTaskList = (search, filter) => {
         if (item.title.toLowerCase().includes(search.toLowerCase())) {
           createTaskElement(item.title, item.checked, item.id);
           createDeleteButton();
+          searchInput.value = "";
         }
       } else {
         if (filter === 'checked') {
