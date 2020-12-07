@@ -21,7 +21,9 @@
 
 ## :page_facing_up: Sobre
 
-O Twigo é um aplicativo de todo list desenvolvido como projeto para o curso DEVinHouse ministrado pelo SENAI e em parceria com a Softplan e ACATE.
+O Twigo é um aplicativo de todo list desenvolvido como projeto para o curso DEVinHouse ministrado pelo SENAI e em parceria com a <a href="https://www.softplan.com.br/">Softplan</a> e <a href="https://www.acate.com.br/">ACATE</a>.
+
+URL de acesso: <a href="https://twigo.mausampaio.com/">https://twigo.mausampaio.com/</a>
 
 <br/>
 
