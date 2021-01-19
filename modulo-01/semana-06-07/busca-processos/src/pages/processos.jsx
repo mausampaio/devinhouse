@@ -1,27 +1,39 @@
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import InputSearch from '../components/inputSearch';
 import NewButton from '../components/newButton';
 import CardProcesso from '../components/cardProcesso';
+import api from '../services/api';
 
 import '../assets/styles/processos.css';
 
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
+};
+
 const Processos = () => {
+  const [processes, setProcesses] = useState([]);
+  const query = useQuery();
+
+  const getProcess = async () => {
+    const result = await api.getAllProcesses();
+
+    console.log(result)
+    setProcesses(result);
+  };
+
+  useEffect(() => {
+    getProcess();
+  }, []);
+
   return (
     <>
       <header>
         <p>Busca de processos</p>
-        <InputSearch placeholder="Pesquise por uma informação do processo" />
+        <InputSearch value={query.get("q")} placeholder="Pesquise por uma informação do processo" />
         <NewButton />
       </header>
-      <CardProcesso process={{
-        "id": "50911ef1-8dc1-404e-8fbd-49c8590b666c",
-        "numero": "SOFT 2021/00001",
-        "entrada": "19/12/2019",
-        "interessados": [
-          "João da Silva"
-        ],
-        "descricao": "Solicitação de licença-prêmio referente ao período 02/06/2015 - 01/06/2018",
-        "assunto": "Licença"
-      }} />
+      <CardProcesso processes={processes} />
     </>
   );
 };

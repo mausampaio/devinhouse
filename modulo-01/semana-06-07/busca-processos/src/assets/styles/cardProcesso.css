@@ -2,6 +2,7 @@
   width: 1044px;
   height: 108px;
   margin-left: calc(118px + 4rem);
+  margin-bottom: 1rem;
   padding: 12px;
   display: flex;
   gap: 1rem;
