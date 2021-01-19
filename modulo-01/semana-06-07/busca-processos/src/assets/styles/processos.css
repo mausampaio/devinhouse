@@ -1,0 +1,16 @@
+header {
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+header p {
+  font-size: 20px;
+  line-height: 24px;
+  width: 118px;
+  height: 49px;
+}
+
+header .input-container {
+  margin: 0 2rem;
+}

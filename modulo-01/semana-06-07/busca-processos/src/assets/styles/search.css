@@ -13,6 +13,11 @@
   color: var(--primary-color);
 }
 
+.container .input-container {
+  padding: .5rem;
+  justify-content: center;
+}
+
 .container p {
   margin: 4rem 0;
   color: var(--color-black-87);
