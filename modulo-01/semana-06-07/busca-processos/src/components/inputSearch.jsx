@@ -1,24 +1,32 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { IoMdSearch } from 'react-icons/io';
 
 import '../assets/styles/inputSearch.css';
 
 const Input = props => {
-  const [searchValue, setSearchValue] = useState();
-
   const { placeholder, value } = props;
+  const [searchValue, setSearchValue] = useState("");
+
   const history = useHistory();
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     history.push(`/processo?q=${searchValue}`);
     console.log(searchValue);
   };
 
+  useEffect(() => {
+    if (value) {
+      setSearchValue(value);
+    }
+  }, [value]);
+
   return (
-    <form onSubmit={handleSubmit} className="input-container">
+    <form onSubmit={e => handleSubmit(e)} className="input-container">
       <IoMdSearch className="search-icon" size="1.5rem" />
-      <input value={value} type="text" id="search" placeholder={placeholder} onChange={(e) => setSearchValue(e.target.value)}></input>
+      <input value={searchValue} type="text" id="search" placeholder={placeholder} onChange={(e) => setSearchValue(e.target.value)}></input>
     </form>
   );
 };

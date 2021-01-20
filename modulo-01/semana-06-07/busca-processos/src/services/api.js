@@ -11,7 +11,15 @@ class ApiService {
 					.catch(error => {
 			throw error;
 		});
-  }
+	}
+	
+	searchProcesses(query) {
+		return axios.get(`${BASE_URL}?q=${query}`)
+			.then(response => response.data)
+						.catch(error => {
+				throw error;
+			});
+		}
   
   getProcess(id) {
 		return axios.get(`${BASE_URL}/${id}`)
