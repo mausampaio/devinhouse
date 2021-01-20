@@ -1,5 +1,6 @@
 import Input from './input';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 import api from '../services/api';
 
@@ -24,8 +25,8 @@ const NewModal = props => {
   }
 
   const createProcess = async () => {
-    if (interessado.trim() === "") {
-      alert('O campo assunto é obritório');
+    if (interessados.length === 0 || descricao.trim() === "" || assunto.trim() === "") {
+      toast.error('Todos os campo são obrigatórios!')
       return;
     }
     const process = {
@@ -37,6 +38,7 @@ const NewModal = props => {
     await api.createProcess(process);
 
     onClose();
+    toast.success('Processo adicionado com sucesso!')
   }
 
   return (
