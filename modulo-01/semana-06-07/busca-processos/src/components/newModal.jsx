@@ -1,11 +1,15 @@
 import Input from './input';
 import { useState } from 'react';
 
+import api from '../services/api';
+
 import Button from './button';
 
 import '../assets/styles/newModal.css';
 
-const NewModal = () => {
+const NewModal = props => {
+  const { onClose } = props;
+
   const [interessado, setInteressado] = useState("");
   const [interessados, setInteressados] = useState([]);
   const [descricao, setDescricao] = useState("");
@@ -17,6 +21,22 @@ const NewModal = () => {
     } else {
       setInteressados([...interessados, interessado]);
     }
+  }
+
+  const createProcess = async () => {
+    if (interessado.trim() === "") {
+      alert('O campo assunto é obritório');
+      return;
+    }
+    const process = {
+      assunto,
+      descricao,
+      interessados,
+    };
+
+    await api.createProcess(process);
+
+    onClose();
   }
 
   return (
@@ -37,7 +57,7 @@ const NewModal = () => {
         </div>
         <Input value={descricao} onChange={setDescricao} type="textarea" label="Descrição" />
       </div>
-      <Button color="btn-blue" />
+      <Button color="btn-blue" onClick={createProcess} />
     </div>
   );
 }

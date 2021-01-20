@@ -14,7 +14,6 @@ const Input = props => {
     e.preventDefault();
 
     history.push(`/processos?q=${searchValue}`);
-    console.log(searchValue);
   };
 
   useEffect(() => {

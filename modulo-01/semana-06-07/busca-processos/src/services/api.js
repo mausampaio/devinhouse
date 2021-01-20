@@ -29,8 +29,8 @@ class ApiService {
 			});
 	}
 	
-	createProcess(filme) {
-		return axios.post(BASE_URL, filme)
+	createProcess(process) {
+		return axios.post(BASE_URL, process)
 			.catch(error => {
 				throw error;
 			})

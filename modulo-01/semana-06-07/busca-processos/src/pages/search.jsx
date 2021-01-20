@@ -21,7 +21,7 @@ const Search = () => {
         open={isOpen} 
         onClose={() => setIsOpen(false)}
       >
-        <NewModal />
+        <NewModal onClose={() => setIsOpen(false)} />
       </Modal>
     </div>,
     document.getElementById('portal')
