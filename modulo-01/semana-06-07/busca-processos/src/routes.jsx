@@ -6,7 +6,7 @@ function Routes() {
   return (
     <BrowserRouter>
       <Route path="/" exact component={Search} />
-      <Route path="/processo" exact component={Processos} />
+      <Route path="/processos" exact component={Processos} />
     </BrowserRouter>
   );
 }

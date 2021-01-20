@@ -14,14 +14,15 @@
 .modal-content {
   background-color: #fefefe;
   margin: auto;
-  padding: 20px;
+  padding: 16px;
   max-width: 922px;
-  height: 470px;
+  min-height: 470px;
   border: 1px solid #C4C4C4;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .modal-content header {
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -1,0 +1,16 @@
+.btn {
+  width: 136px;
+  height: 36px;
+  border: none;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.btn-grey {
+  color: #FFF;
+  background: #C4C4C4;
+}
+
+.btn-blue {
+  color: #FFF;
+  background: #005B95;
+}

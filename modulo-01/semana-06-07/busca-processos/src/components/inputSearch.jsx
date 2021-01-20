@@ -13,7 +13,7 @@ const Input = props => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    history.push(`/processo?q=${searchValue}`);
+    history.push(`/processos?q=${searchValue}`);
     console.log(searchValue);
   };
 
