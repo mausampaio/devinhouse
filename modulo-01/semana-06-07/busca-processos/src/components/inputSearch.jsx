@@ -24,8 +24,10 @@ const Input = props => {
 
   return (
     <form onSubmit={e => handleSubmit(e)} className="input-container">
-      <IoMdSearch className="search-icon" size="1.5rem" />
       <input value={searchValue} type="text" id="search" placeholder={placeholder} onChange={(e) => setSearchValue(e.target.value)}></input>
+      <button className="input-button">
+        <IoMdSearch size="1.5rem" />
+      </button>
     </form>
   );
 };

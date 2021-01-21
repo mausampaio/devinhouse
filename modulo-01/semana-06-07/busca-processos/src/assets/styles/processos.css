@@ -28,3 +28,10 @@ header .input-container {
 .processes-details {
   width: 100%;
 }
+
+@media (max-width: 980px) {
+  header {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
