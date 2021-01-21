@@ -74,7 +74,11 @@ const Processos = () => {
         </div>
         {isClicked &&
           <div className="process-details">
-            <ProcessDetails process={process} isClicked={setIsClicked} isRemoved={setIsRemoved} />
+            <ProcessDetails 
+              process={process}
+              isClicked={setIsClicked}
+              isRemoved={setIsRemoved}
+            />
           </div>
         }
       </div>
@@ -83,7 +87,9 @@ const Processos = () => {
         open={isOpen} 
         onClose={() => setIsOpen(false)}
       >
-        <NewModal onClose={() => setIsOpen(false)} />
+        <NewModal
+          onClose={() => setIsOpen(false)}
+        />
       </Modal>
     </>
   );

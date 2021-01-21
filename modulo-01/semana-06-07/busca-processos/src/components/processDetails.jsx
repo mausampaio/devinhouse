@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 import Button from './button';
 import Modal from './modal';
+import NewModal from './newModal';
 
 import api from '../services/api';
 
@@ -12,6 +14,7 @@ import placeholder120 from '../assets/images/placeholder_120.png';
 const ProcessDetails = props => {
   const { process, isClicked, isRemoved } = props;
 
+  const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleRemoveClick = async () => {
@@ -22,6 +25,8 @@ const ProcessDetails = props => {
     setIsOpen(false);
 
     isClicked(false)
+
+    toast.success('Processo removido com sucesso!')
   };
 
   return (
@@ -61,19 +66,20 @@ const ProcessDetails = props => {
           name="REMOVER"
           color="btn-outline"
           onClick={() => {
-            setIsOpen(true);
+            setIsRemoveModalOpen(true);
             isRemoved(false);
           }}
         />
         <Button 
           name="EDITAR"
           color="btn-outline-blue"
+          onClick={() => setIsOpen(true)}
         />
       </footer>
       <Modal 
       title="Confirmação de remoção" 
-      open={isOpen} 
-      onClose={() => setIsOpen(false)}
+      open={isRemoveModalOpen} 
+      onClose={() => setIsRemoveModalOpen(false)}
       >
         <div className="remove-process">
           <p>{`Deseja remover o processo: ${process.numero}?`}</p>
@@ -86,10 +92,21 @@ const ProcessDetails = props => {
             <Button 
               name="CANCELAR"
               color="btn-outline-blue"
-              onClick={() => setIsOpen(false)}
+              onClick={() => setIsRemoveModalOpen(false)}
             />
           </footer>
         </div>
+      </Modal>
+      <Modal 
+        title="Cadastro de processo" 
+        open={isOpen} 
+        onClose={() => setIsOpen(false)}
+      >
+        <NewModal
+          onClose={() => setIsOpen(false)}
+          process={process}
+          isEdit
+        />
       </Modal>
     </div>
   );
