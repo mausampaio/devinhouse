@@ -10,3 +10,7 @@ button {
   font-size: 14px;
   line-height: 17px;
 }
+
+button:hover {
+  background: #eeeeee;
+}

@@ -56,11 +56,11 @@ const NewModal = props => {
         </div>
         <div className="add-interessados">
           <Input value={interessado} onChange={setInteressado} label="Novo interessado" name="interessados" />
-          <Button color="btn-grey" onClick={handleAdd} />
+          <Button color="btn-grey" name="ADICIONAR" onClick={handleAdd} />
         </div>
         <Input value={descricao} onChange={setDescricao} type="textarea" label="Descrição" />
       </div>
-      <Button color="btn-blue" onClick={createProcess} />
+      <Button color="btn-blue" name="SALVAR" onClick={createProcess} />
     </div>
   );
 }

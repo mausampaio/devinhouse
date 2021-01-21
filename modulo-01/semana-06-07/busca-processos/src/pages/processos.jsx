@@ -21,6 +21,7 @@ const Processos = () => {
   const [processes, setProcesses] = useState([]);
   const [process, setProcess] = useState({});
   const [isClicked, setIsClicked] = useState(false);
+  const [isRemoved, setIsRemoved] = useState(false);
   const [processId, setProcessId] = useState("");
   const query = useQuery();
   const location = useLocation();
@@ -51,7 +52,7 @@ const Processos = () => {
 
     getProcesses();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location]);
+  }, [location, isRemoved]);
 
   return (
     <>
@@ -73,7 +74,7 @@ const Processos = () => {
         </div>
         {isClicked &&
           <div className="process-details">
-            <ProcessDetails process={process} isClicked={setIsClicked} />
+            <ProcessDetails process={process} isClicked={setIsClicked} isRemoved={setIsRemoved} />
           </div>
         }
       </div>

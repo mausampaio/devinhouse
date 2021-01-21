@@ -1,9 +1,28 @@
+import { useState } from 'react';
+
+import Button from './button';
+import Modal from './modal';
+
+import api from '../services/api';
+
 import '../assets/styles/processDetails.css';
 
 import placeholder120 from '../assets/images/placeholder_120.png';
 
 const ProcessDetails = props => {
-  const { process, isClicked } = props;
+  const { process, isClicked, isRemoved } = props;
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleRemoveClick = async () => {
+    await api.deleteProcess(process.id);
+
+    isRemoved(true);
+
+    setIsOpen(false);
+
+    isClicked(false)
+  };
 
   return (
     <div className="process-details-container">
@@ -37,6 +56,41 @@ const ProcessDetails = props => {
         <h4>Descrição</h4>
         <p>{process.descricao}</p>
       </div>
+      <footer>
+        <Button 
+          name="REMOVER"
+          color="btn-outline"
+          onClick={() => {
+            setIsOpen(true);
+            isRemoved(false);
+          }}
+        />
+        <Button 
+          name="EDITAR"
+          color="btn-outline-blue"
+        />
+      </footer>
+      <Modal 
+      title="Confirmação de remoção" 
+      open={isOpen} 
+      onClose={() => setIsOpen(false)}
+      >
+        <div className="remove-process">
+          <p>{`Deseja remover o processo: ${process.numero}?`}</p>
+          <footer>
+            <Button 
+              name="REMOVER"
+              color="btn-outline"
+              onClick={() => handleRemoveClick()}
+            />
+            <Button 
+              name="CANCELAR"
+              color="btn-outline-blue"
+              onClick={() => setIsOpen(false)}
+            />
+          </footer>
+        </div>
+      </Modal>
     </div>
   );
 }

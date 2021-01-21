@@ -1,9 +1,9 @@
 import '../assets/styles/button.css';
 
 const Button = props => {
-  const { color, onClick } = props;
+  const { color, onClick, name } = props;
   return (
-    <button className={`${color} btn`} onClick={onClick} >ADICIONAR</button>
+    <button className={`${color} btn`} onClick={onClick} >{name}</button>
   );
 }
 

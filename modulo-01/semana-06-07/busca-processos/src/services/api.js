@@ -35,13 +35,6 @@ class ApiService {
 				throw error;
 			})
 	}
-
-	updateProcess(filme) {
-		return axios.put(BASE_URL, filme)
-			.catch(error => {
-				throw error;
-			})
-	}
     
 	deleteProcess(id) {
 	return axios.delete(`${BASE_URL}/${id}`)
