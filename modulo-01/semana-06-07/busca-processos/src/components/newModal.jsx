@@ -1,6 +1,7 @@
 import Input from './input';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { FiTrash2 } from 'react-icons/fi';
 
 import api from '../services/api';
 
@@ -42,12 +43,19 @@ const NewModal = props => {
     toast.success('Processo adicionado com sucesso!')
   }
 
+  const handleRemove = index => {
+    const newInteressados = interessados.filter((_, fIndex) => fIndex !== index);
+ 
+    setInteressados(newInteressados);
+  };
+
   useEffect(() => {
     if (process) {
       setAssunto(process.assunto);
       setDescricao(process.descricao);
       setInteressados(process.interessados);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -57,8 +65,11 @@ const NewModal = props => {
         <div className="interessados">
           <h4>Interessados</h4>
           <ul>
-            {interessados.map(item => (
-              <li>{item}</li>
+            {interessados.map((item, index) => (
+              <div key={index} className="list-item">
+                <li>{item}</li>
+                <button onClick={() => handleRemove(index)}><FiTrash2 /></button>
+              </div>
             ))}
           </ul>
         </div>

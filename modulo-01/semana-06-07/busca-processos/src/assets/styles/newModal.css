@@ -29,6 +29,23 @@
   color: #000000;
 }
 
+.new-modal-form .list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.new-modal-form .list-item button {
+  border: none;
+  filter: none;
+  width: 14px;
+  height: 14px;
+}
+
+.new-modal-form .list-item button:hover {
+  color: red;
+}
+
 .add-interessados {
   display: flex;
   align-items: flex-end;
