@@ -1,8 +1,9 @@
 import '../assets/styles/newButton.css';
 
-const NewButton = () => {
+const NewButton = props => {
+  const { onClick } = props;
   return (
-    <button>NOVO</button>
+    <button onClick={onClick} >NOVO</button>
   );
 };
 

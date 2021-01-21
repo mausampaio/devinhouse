@@ -21,6 +21,7 @@ const NewModal = props => {
       setInteressado("");
     } else {
       setInteressados([...interessados, interessado]);
+      setInteressado("");
     }
   }
 

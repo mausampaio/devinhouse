@@ -1,6 +1,6 @@
 .card-container {
-  width: 1044px;
-  height: 108px;
+  max-width: 1044px;
+  min-height: 108px;
   margin-left: calc(118px + 4rem);
   margin-bottom: 1rem;
   padding: 12px;
@@ -9,15 +9,24 @@
   align-items: center;
   border: 1px solid #C4C4C4;
   box-shadow:  0px 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.clicked {
+  align-items: flex-start;
 }
 
 .card-container .card-content {
   width: 100%;
-  display: flex;
 }
 
 .card-content div {
   width: 25%;
+  display: inline-block;
+}
+
+.clicked div {
+  width: 50%;
 }
 
 .card-container h4 {
@@ -25,6 +34,10 @@
   color: var(--color-black-54);
   font-size: 14px;
   line-height: 17px;
+}
+
+.clicked h4 {
+  margin-bottom: 0;
 }
 
 .card-container p {

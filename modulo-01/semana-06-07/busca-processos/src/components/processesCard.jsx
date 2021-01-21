@@ -1,13 +1,15 @@
 import placeholder from '../assets/images/placeholder.png';
 
-import '../assets/styles/cardProcesso.css';
+import '../assets/styles/processesCard.css';
 
-const CardProcesso = props => {
-  const { process } = props;
+const ProcessesCard = props => {
+  const { process, onClick, isClicked } = props;
 
   return (
-    <div className="card-container">
-      <img src={placeholder} alt="placeholder"/>
+    <div onClick={onClick} className={`card-container ${isClicked && 'clicked'}`}>
+      {!isClicked &&
+        <img src={placeholder} alt="placeholder"/>
+      }
       <div className="card-content">
         <div className="numero">
           <h4>Número</h4>
@@ -21,13 +23,15 @@ const CardProcesso = props => {
           <h4>Interessado</h4>
           <p>{process.interessados[0]}</p>
         </div>
-        <div className="descricao">
-          <h4>Descrição</h4>
-          <p>{process.descricao}</p>
-        </div>
+        {!isClicked &&
+          <div className="descricao">
+            <h4>Descrição</h4>
+            <p>{process.descricao}</p>
+          </div>
+        }
       </div>
     </div>
   );
 }
 
-export default CardProcesso;
+export default ProcessesCard;

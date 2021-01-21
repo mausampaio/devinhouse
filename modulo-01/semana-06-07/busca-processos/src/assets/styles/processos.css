@@ -14,3 +14,17 @@ header p {
 header .input-container {
   margin: 0 2rem;
 }
+
+.processes-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.processes-cards {
+  width: 100%;
+}
+
+.processes-details {
+  width: 100%;
+}
