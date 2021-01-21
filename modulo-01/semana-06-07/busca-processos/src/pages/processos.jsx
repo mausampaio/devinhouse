@@ -19,6 +19,7 @@ const useQuery = () => {
 const Processos = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [processes, setProcesses] = useState([]);
+  const [process, setProcess] = useState({});
   const [isClicked, setIsClicked] = useState(false);
   const [processId, setProcessId] = useState("");
   const query = useQuery();
@@ -28,19 +29,28 @@ const Processos = () => {
     if (id === processId && isClicked) {
       return;
     } 
-    setIsClicked(!isClicked);
+    setIsClicked(true);
 
     setProcessId(id);
+
+    getProcess(id);
+  };
+
+  const getProcess = async id => {
+    const result = await api.getProcess(id);
+
+    setProcess(result);
   };
 
   useEffect(() => {
-    const getProcess = async () => {
+    const getProcesses = async () => {
       const result = await api.searchProcesses(query.get("q"));
-  
-      console.log(result)
+ 
       setProcesses(result);
     };
-    getProcess();
+
+    getProcesses();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
   return (
@@ -52,17 +62,18 @@ const Processos = () => {
       </header>
       <div className="processes-container">
         <div className="processes-cards">
-          {processes.map(process => (
+          {processes.map(mapProcess => (
             <ProcessesCard 
-              process={process}
+              process={mapProcess}
               isClicked={isClicked}
-              onClick={() => handleCardClick(process.id)}
+              onClick={() => handleCardClick(mapProcess.id)}
+              key={mapProcess.id}
             />
           ))}
         </div>
         {isClicked &&
           <div className="process-details">
-            <ProcessDetails />
+            <ProcessDetails process={process} isClicked={setIsClicked} />
           </div>
         }
       </div>

@@ -1,5 +1,5 @@
 .process-details-container {
-  max-width: 800px;
+  min-width: 800px;
   margin-right: 40px;
   padding: 1rem;
   border: 1px solid #C4C4C4;
