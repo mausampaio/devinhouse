@@ -21,6 +21,10 @@ header .input-container {
   gap: 20px;
 }
 
+.search-result {
+  text-align: center;
+}
+
 .processes-cards {
   width: 100%;
 }

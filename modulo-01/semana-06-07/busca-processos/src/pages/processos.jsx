@@ -23,6 +23,7 @@ const Processos = () => {
   const [isClicked, setIsClicked] = useState(false);
   const [isRemoved, setIsRemoved] = useState(false);
   const [processId, setProcessId] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   const query = useQuery();
   const location = useLocation();
 
@@ -45,12 +46,15 @@ const Processos = () => {
 
   useEffect(() => {
     const getProcesses = async () => {
-      const result = await api.searchProcesses(query.get("q"));
- 
+      const result = await api.searchProcesses(query.get("search"));
+      
       setProcesses(result);
     };
-
-    getProcesses();
+    
+    if (query.get("search") === null || query.get("search").trim() !== "") {
+      setSearchTerm(query.get("search"));
+      getProcesses();
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location, isRemoved]);
 
@@ -58,30 +62,36 @@ const Processos = () => {
     <>
       <header>
         <p>Busca de processos</p>
-        <InputSearch value={query.get("q")} placeholder="Pesquise por uma informação do processo" />
+        <InputSearch value={searchTerm} placeholder="Pesquise por uma informação do processo" />
         <NewButton onClick={() => setIsOpen(true)} />
       </header>
-      <div className="processes-container">
-        <div className="processes-cards">
-          {processes.map(mapProcess => (
-            <ProcessesCard 
-              process={mapProcess}
-              isClicked={isClicked}
-              onClick={() => handleCardClick(mapProcess.id)}
-              key={mapProcess.id}
-            />
-          ))}
+      {query.get("search") === null || query.get("search").trim() === "" ?
+        <div className="process-container">
+          <p className="search-result">Nenhum resultado encontrado...</p>
         </div>
-        {isClicked &&
-          <div className="process-details">
-            <ProcessDetails 
-              process={process}
-              isClicked={setIsClicked}
-              isRemoved={setIsRemoved}
-            />
+      :
+        <div className="processes-container">
+          <div className="processes-cards">
+            {processes.map(mapProcess => (
+              <ProcessesCard 
+                process={mapProcess}
+                isClicked={isClicked}
+                onClick={() => handleCardClick(mapProcess.id)}
+                key={mapProcess.id}
+              />
+            ))}
           </div>
-        }
-      </div>
+          {isClicked &&
+            <div className="process-details">
+              <ProcessDetails 
+                process={process}
+                isClicked={setIsClicked}
+                isRemoved={setIsRemoved}
+              />
+            </div>
+          }
+        </div>
+      }
       <Modal 
         title="Cadastro de processo" 
         open={isOpen} 

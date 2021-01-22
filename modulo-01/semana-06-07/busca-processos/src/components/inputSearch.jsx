@@ -13,7 +13,9 @@ const Input = props => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    history.push(`/processos?q=${searchValue}`);
+    searchValue.trim() === "" && setSearchValue("");
+
+    history.push(`/processos?search=${searchValue}`);
   };
 
   useEffect(() => {
