@@ -71,7 +71,7 @@ const Processos = () => {
         </div>
       :
         <div className="processes-container">
-          <div className="processes-cards">
+          <div className={`processes-cards ${isClicked && 'clicked'}`}>
             {processes.map(mapProcess => (
               <ProcessesCard 
                 process={mapProcess}

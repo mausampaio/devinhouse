@@ -46,3 +46,14 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+@media (max-width: 980px) {
+  .modal-content {
+    margin: 10px;
+  }
+  .modal-content header {
+    justify-content: space-between;
+    flex-direction: row;
+    margin-bottom: 20px;
+  }
+}

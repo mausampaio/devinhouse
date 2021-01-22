@@ -93,7 +93,7 @@
 @media (max-width: 980px) {
   .process-details-container {
     min-width: 90%;
-    margin-right: 40px;
+    margin: 0 10px;
     margin-bottom: 40px;
     padding: .5rem;
   }
@@ -114,6 +114,9 @@
     flex-direction: column;
     margin-left: 5px;
   }
+  .process-details-container .header-content p {
+    text-align: start;
+  }
   .process-details-container .header-content div {
     width: 100%;
   }
@@ -122,5 +125,12 @@
     display: flex;
     justify-content: center;
     gap: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .process-details {
+    min-width: 100%;
+    margin: 0 auto;
   }
 }
