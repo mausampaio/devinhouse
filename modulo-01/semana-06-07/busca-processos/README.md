@@ -1,70 +1,100 @@
-# Getting Started with Create React App
+<h1 align="center">
+    Busca de processos
+</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <a href="#page_facing_up-sobre">Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#computer-web">Web</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#iphone-mobile">Mobile</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#rocket-tecnologias-utilizadas">Tecnologias Utilizadas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#gear-como-configurar-e-executar">Como configurar e executar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+</p>
 
-## Available Scripts
+<br/>
 
-In the project directory, you can run:
+<h3 align="center">
+  <img alt="busca_processos_cover" title="github_explorer" src=".github/capa.png" />
+</h3>
 
-### `yarn start`
+<br/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## :page_facing_up: Sobre
 
-### `yarn test`
+Aplicativo desenvolvido como projeto para o curso DEVinHouse ministrado pelo SENAI e em parceria com a <a href="https://www.softplan.com.br/">Softplan</a> e <a href="https://www.acate.com.br/">ACATE</a>. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Para maiores informações sobre os requisitos veja em <a href="https://github.com/g-cpa-squad-produto/softplan-desafio-frontend">softplan-desafio-frontend</a>.
 
-### `yarn build`
+<br/>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## :computer: Web
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<h3 align="center">
+  <img alt="busca_processos_web" title="github_explorer" src=".github/web.png" />
+</h3>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br/>
 
-### `yarn eject`
+## :iphone: Mobile
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<h3 align="center">
+  <img alt="busca_processos_mobile" title="github_explorer" src=".github/mobile.jpeg" />
+</h3>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<br/>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## :rocket: Tecnologias Utilizadas
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- React
+- Node
+- CSS
+- Javascript
 
-## Learn More
+<br/>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## :gear: Como configurar e executar
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
 
-### Code Splitting
+    # Clonar o repositório
+    $ git clone https://github.com/mausampaio/devinhouse.git 'devinhouse'
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    # Navegar para o diretório
+    $ cd devinhouse/modulo-01/semana-06-07/busca-processos/
 
-### Analyzing the Bundle Size
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Utilizando o Docker
 
-### Making a Progressive Web App
+```bash
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+    # Para subir o ambiente de desenvolvimento
+    $ docker-compose -f docker-compose-dev.yml up -d
 
-### Advanced Configuration
+    # Para subir o ambiente de produção
+    $ docker-compose up -d
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```
 
-### Deployment
+### Sem o Docker
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
 
-### `yarn build` fails to minify
+    $ npm install
+    # ou
+    $ yarn
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    # Para iniciar a aplicação
+    $ npm start
+    # ou
+    $ yarn start
+
+```
+
+<br/>
+
+---
+
+<h4 align="center">
+  Feito com :purple_heart: by <a href="https://www.linkedin.com/in/mausampaio/" target="_blank">Maurício Sampaio</a>.
+</h4>

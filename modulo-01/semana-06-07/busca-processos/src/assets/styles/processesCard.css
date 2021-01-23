@@ -12,7 +12,7 @@
   cursor: pointer;
 }
 
-.clicked {
+.processes-cards .clicked {
   align-items: flex-start;
 }
 
@@ -25,7 +25,7 @@
   display: inline-block;
 }
 
-.clicked div {
+.clicked .card-content div {
   width: 50%;
 }
 

@@ -1,0 +1,14 @@
+version: "3.3"
+services:
+  app-prod-frontend:
+    container_name: devinhouse-prod-frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8080:80'
+  app-prod-backend:
+    container_name: devinhouse-prod-backend
+    image: gcpasquadproduto/softplan-desafio-frontend
+    ports:
+      - 3002:3002
