@@ -20,39 +20,6 @@
   color: var(--color-black-54);
 }
 
-.new-modal-form ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  font-size: 16px;
-  line-height: 20px;
-  color: #000000;
-}
-
-.new-modal-form .list-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.new-modal-form .list-item button {
-  border: none;
-  filter: none;
-  width: 14px;
-  height: 14px;
-  cursor: pointer;
-}
-
-.new-modal-form .list-item button:hover {
-  color: red;
-}
-
-.add-interessados {
-  display: flex;
-  align-items: flex-end;
-  gap: 1rem;
-}
-
 .new-modal-content .btn {
   align-self: flex-end;
   justify-self: flex-end;

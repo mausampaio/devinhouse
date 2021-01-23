@@ -3,6 +3,8 @@ import { FiTrash2 } from 'react-icons/fi';
 import Input from './input';
 import Button from './button';
 
+import '../assets/styles/inputInteressados.css';
+
 const InputInteressados = props => {
   const { interessado, interessados, setInteressado, setInteressados } = props;
 
