@@ -37,8 +37,17 @@ const InputInteressados = props => {
         </ul>
       </div>
       <div className="add-interessados">
-        <Input value={interessado} onChange={setInteressado} label="Novo interessado" name="interessados" />
-        <Button color="btn-grey" name="ADICIONAR" onClick={handleAdd} />
+        <Input
+          value={interessado}
+          onChange={setInteressado}
+          label="Novo interessado"
+          name="interessados"
+        />
+        <Button
+          color="btn-grey"
+          name="ADICIONAR"
+          onClick={handleAdd}
+        />
       </div>
     </>
   );

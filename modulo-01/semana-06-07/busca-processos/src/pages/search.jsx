@@ -15,10 +15,10 @@ const Search = () => {
     <div className="container">
       <h1>Busca de processos</h1>
       <InputSearch placeholder="Pesquise por uma informação do processo" />
-      <p>Você pode criar um novo processo <Link onClick={() => setIsOpen(true)}>clicando aqui</Link>.</p>
+      <p>Você pode criar um novo processo <Link to="#" onClick={() => setIsOpen(true)}>clicando aqui</Link>.</p>
       <Modal 
-        title="Cadastro de processo" 
-        open={isOpen} 
+        title="Cadastro de processo"
+        open={isOpen}
         onClose={() => setIsOpen(false)}
       >
         <NewModal onClose={() => setIsOpen(false)} />

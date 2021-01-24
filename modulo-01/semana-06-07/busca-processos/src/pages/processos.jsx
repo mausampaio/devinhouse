@@ -62,8 +62,13 @@ const Processos = () => {
     <>
       <header>
         <p>Busca de processos</p>
-        <InputSearch value={searchTerm} placeholder="Pesquise por uma informação do processo" />
-        <NewButton onClick={() => setIsOpen(true)} />
+        <InputSearch
+          value={searchTerm}
+          placeholder="Pesquise por uma informação do processo"
+        />
+        <NewButton
+          onClick={() => setIsOpen(true)}
+        />
       </header>
       {query.get("search") === null || query.get("search").trim() === "" ?
         <div className="process-container">

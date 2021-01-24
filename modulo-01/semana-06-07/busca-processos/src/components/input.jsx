@@ -7,14 +7,23 @@ const Input = props => {
     return (
       <div className="textarea-content">
         <label htmlFor={name}>{label}</label>
-        <textarea value={value} onChange={e => onChange(e.target.value)} name={name} />
+        <textarea 
+          value={value}
+          onChange={e => onChange(e.target.value)}
+          name={name}
+        />
       </div>
     );
   } else {
     return (
       <div className="input-content">
         <label htmlFor={name}>{label}</label>
-        <input value={value} onChange={e => onChange(e.target.value)} name={name} type="text"/>
+        <input
+          value={value}
+          onChange={e => onChange(e.target.value)}
+          name={name}
+          type="text"
+        />
       </div>
     );
   }

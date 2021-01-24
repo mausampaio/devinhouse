@@ -14,7 +14,7 @@ const Input = props => {
     e.preventDefault();
 
     searchValue.trim() === "" && setSearchValue("");
-
+    
     history.push(`/processos?search=${searchValue}`);
   };
 
@@ -26,7 +26,14 @@ const Input = props => {
 
   return (
     <form onSubmit={e => handleSubmit(e)} className="input-container">
-      <input value={searchValue} type="text" id="search" placeholder={placeholder} onChange={(e) => setSearchValue(e.target.value)}></input>
+      <input
+        value={searchValue}
+        type="text"
+        id="search"
+        placeholder={placeholder}
+        onChange={(e) => setSearchValue(e.target.value)}
+      >
+      </input>
       <button className="input-button">
         <IoMdSearch size="1.5rem" />
       </button>

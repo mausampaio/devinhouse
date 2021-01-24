@@ -47,7 +47,12 @@ const ProcessDetails = props => {
             <p>{process.assunto}</p>
           </div>
         </div>
-        <span className="close" onClick={() => isClicked(false)}>&times;</span>
+        <span 
+          className="close"
+          onClick={() => isClicked(false)}
+        >
+          &times;
+        </span>
       </header>
       <div className="process-details-interessados">
         <h4>Interessados</h4>
@@ -77,9 +82,9 @@ const ProcessDetails = props => {
         />
       </footer>
       <Modal 
-      title="Confirmação de remoção" 
-      open={isRemoveModalOpen} 
-      onClose={() => setIsRemoveModalOpen(false)}
+        title="Confirmação de remoção" 
+        open={isRemoveModalOpen} 
+        onClose={() => setIsRemoveModalOpen(false)}
       >
         <div className="remove-process">
           <p>{`Deseja remover o processo: ${process.numero}?`}</p>

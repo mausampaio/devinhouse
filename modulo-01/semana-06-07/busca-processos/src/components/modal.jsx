@@ -10,7 +10,12 @@ const Modal = props => {
       <div className="modal-content">
         <header>
           <h3>{title}</h3>
-          <span className="close" onClick={onClose}>&times;</span>
+          <span 
+            className="close"
+            onClick={onClose}
+          >
+            &times;
+          </span>
         </header>
         {children}
       </div>
