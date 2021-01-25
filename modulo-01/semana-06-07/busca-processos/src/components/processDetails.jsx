@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import Button from './button';
@@ -12,9 +12,10 @@ import '../assets/styles/processDetails.css';
 import placeholder120 from '../assets/images/placeholder_120.png';
 
 const ProcessDetails = props => {
-  const { process, isClicked, isRemoved } = props;
+  const { processId, isClicked, isRemoved } = props;
 
   const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
+  const [process, setProcess] = useState({});
   const [isOpen, setIsOpen] = useState(false);
 
   const handleRemoveClick = async () => {
@@ -28,6 +29,16 @@ const ProcessDetails = props => {
 
     toast.success('Processo removido com sucesso!')
   };
+
+  useEffect(() => {
+    const getProcess = async id => {
+      const result = await api.getProcess(id);
+  
+      setProcess(result);
+    };
+
+    getProcess(processId);
+  }, [processId]);
 
   return (
     <div className="process-details-container">

@@ -19,7 +19,6 @@ const useQuery = () => {
 const Processos = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [processes, setProcesses] = useState([]);
-  const [process, setProcess] = useState({});
   const [isClicked, setIsClicked] = useState(false);
   const [isRemoved, setIsRemoved] = useState(false);
   const [processId, setProcessId] = useState("");
@@ -29,19 +28,11 @@ const Processos = () => {
 
   const handleCardClick = id => {
     if (id === processId && isClicked) {
-      return;
+      return setIsClicked(false);
     } 
     setIsClicked(true);
 
     setProcessId(id);
-
-    getProcess(id);
-  };
-
-  const getProcess = async id => {
-    const result = await api.getProcess(id);
-
-    setProcess(result);
   };
 
   useEffect(() => {
@@ -89,7 +80,7 @@ const Processos = () => {
           {isClicked &&
             <div className="process-details">
               <ProcessDetails 
-                process={process}
+                processId={processId}
                 isClicked={setIsClicked}
                 isRemoved={setIsRemoved}
               />
