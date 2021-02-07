@@ -1,0 +1,1 @@
+UPDATE estudantes SET media_geral = 8.2 WHERE nome = 'Emanuelle';
