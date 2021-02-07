@@ -1,0 +1,1 @@
+-- Todas as tabelas já foram criadas com primary key
