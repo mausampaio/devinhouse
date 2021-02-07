@@ -1,7 +1,6 @@
 FROM node:alpine
 
 ENV HOME=/app
-ENV REACT_APP_BACKEND="http://localhost:3002"
 WORKDIR $HOME
 
 COPY package.json ./

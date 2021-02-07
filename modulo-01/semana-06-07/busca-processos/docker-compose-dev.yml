@@ -1,6 +1,13 @@
 version: "3.3"
 services:
+  app-backend:
+    container_name: devinhouse-backend
+    image: gcpasquadproduto/softplan-desafio-frontend
+    ports:
+      - 3002:3002
   app-frontend:
+    depends_on:
+      - app-backend
     stdin_open: true
     container_name: devinhouse-frontend
     build: 
@@ -8,11 +15,8 @@ services:
       dockerfile: Dockerfile.dev
     ports: 
       - 3000:3000
+    environment:
+      REACT_APP_BACKEND: "http://localhost:3002"
     volumes:
       - "/app/node_modules"
       - "./:/app"
-  app-backend:
-    container_name: devinhouse-backend
-    image: gcpasquadproduto/softplan-desafio-frontend
-    ports:
-      - 3002:3002
