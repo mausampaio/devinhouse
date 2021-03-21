@@ -26,4 +26,9 @@ public class ContaBancaria {
 	public double getSaldo() {
 		return this.saldo + this.limite;
 	}
+	
+	public String recuperaDadosParaImpressao() {
+		return "Titular: " + this.nomeDoTitular 
+				+ "%nCC: " + this.numero + "%nAG: " + this.agencia + "%nSaldo: " + this.saldo + "%nLimite: " + this.limite;
+	}
 }
