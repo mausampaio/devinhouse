@@ -50,4 +50,8 @@ public class Conta {
 	public int getIdentificador() {
 		return identificador;
 	}
+
+  public String getTipo () {
+    return "Conta";
+  }
 }
