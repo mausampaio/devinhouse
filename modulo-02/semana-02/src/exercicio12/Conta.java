@@ -1,20 +1,20 @@
-package exercicio07;
+package exercicio12;
 
-public class ContaBancaria {
-	private static int totalDeContas;
+public class Conta {
+  private static int totalDeContas;
   private int identificador;
 
-	String nomeDoTitular = "Mauricio";
-	int numero = 1;
-	int agencia = 1;
-	double saldo = 200;
-	double limite = 400;
+	String nomeDoTitular;
+	int numero;
+	int agencia;
+	double saldo;
+	double limite;
 
-	public ContaBancaria() {
-		ContaBancaria.totalDeContas++;
+	public Conta() {
+		Conta.totalDeContas++;
 	}
 
-	public ContaBancaria(String nomeDoTitular, int numero, int agencia) {
+	public Conta(String nomeDoTitular, int numero, int agencia) {
 		this();
 		this.identificador = totalDeContas;
 		this.nomeDoTitular = nomeDoTitular;
